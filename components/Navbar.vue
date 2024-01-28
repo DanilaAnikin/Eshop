@@ -1,8 +1,25 @@
 <script setup lang="ts">
-import { MagnifyingGlassCircleIcon } from '@heroicons/vue/24/solid';
-import { Bars3Icon, ShoppingCartIcon } from '@heroicons/vue/24/outline';
-
 const searchInput = ref<string | null>(null);
+// interface Category {
+//     label: string,
+//     avatar?: {
+//         src: string,
+//     },
+//     icon?: string,
+//     shortcuts?: string[],
+//     click?: () => {},
+//     disabled?: boolean,
+//     slot?: string
+// }
+const items = [{
+    label: 'Kiss my ass',
+    icon: 'i-heroicons-hand-thumb-up-circle-20-outline',
+    shortcuts: ['⌘', 'K', 'M', 'A']
+}, {
+    label: 'Delete',
+    icon: 'i-heroicons-trash-20-solid',
+    shortcuts: ['⌘', 'D']
+}];
 
 </script>
 
@@ -11,19 +28,46 @@ const searchInput = ref<string | null>(null);
         <div class="flex gap-8">
             <span class="text-3xl font-bold text-orange-600 font-serif cursor-pointer">ANAKYS</span>
             <div class="flex items-center gap-2 hover:text-slate-600 cursor-pointer">
-                <span>Categories</span>
-                <Bars3Icon class="h-6 w-6 mt-px" />
+                <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
+                    <UButton
+                        color="orange"
+                        label="Categories"
+                        trailing-icon="i-heroicons-chevron-down-20-solid"
+                    />
+                </UDropdown>
             </div>
         </div>
 
-        <div class="flex border-[2px] rounded-3xl border-black px-1">
-            <input v-model="searchInput" type="text" class="rounded-l-3xl px-3 w-96 py-2 outline-none placeholder:text-slate-400 focus:placeholder:text-slate-200" placeholder="Search 4 NIGGS" >
-            <MagnifyingGlassCircleIcon class="h-12 w-12 text-orange-500 cursor-pointer hover:text-orange-600 transition-all duration-200" />
-        </div>
-        
+        <UInput
+            name="searchInput"
+            icon="i-heroicons-magnifying-glass-20-solid"
+            color="orange"
+            variant="outline"
+            placeholder="Search..."
+            v-model="searchInput"
+            autocomplete="off"
+            :ui="{ icon: { trailing: { pointer: '' } } }"
+        />
+        <template #trailing>
+            <UButton
+                v-show="searchInput !== ''"
+                color="gray"
+                variant="link"
+                icon="i-heroicons-x-mark-20-solid"
+                :padded="false"
+                @click="searchInput = ''"
+            />
+        </template>
         <div class="flex gap-6 items-center">
-            <div @click="$emit('open-sign-in')" class="cursor-pointer hover:text-blue-900 font-serif rounded-2xl hover:bg-gray-100 transition-all duration-400 px-2 py-1">Sign in</div>
-            <ShoppingCartIcon class="h-10 w-10 cursor-pointer mt-px rounded-3xl hover:bg-gray-100 transition-all duration-400 p-2" />
+            <div class="cursor-pointer hover:text-blue-900 font-serif rounded-2xl hover:bg-gray-100 transition-all duration-400 px-2 py-1">Sign in</div>
+            <!-- <ShoppingCartIcon class="h-10 w-10 cursor-pointer mt-px rounded-3xl hover:bg-gray-100 transition-all duration-400 p-2" /> -->
+            <UButton
+                icon="i-heroicons-shopping-cart"
+                size="sm"
+                color="orange"
+                square
+                variant="outline"
+            />
         </div>
     </div>
 </template>

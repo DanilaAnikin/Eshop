@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/supabase": "^1.1.6",
     "autoprefixer": "^10.4.17",
     "nuxt": "^3.9.3",
     "postcss": "^8.4.33",
@@ -19,6 +20,7 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.1.1",
+    "@nuxt/ui": "^2.12.3",
     "@supabase/supabase-js": "^2.39.3",
     "dayjs": "^1.11.10",
     "vue-simple-alert": "^1.1.1"

@@ -8,4 +8,5 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  modules: ['@nuxtjs/supabase', '@nuxt/ui'],
 })
