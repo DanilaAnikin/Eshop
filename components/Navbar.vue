@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DropdownItem } from '@nuxt/ui/dist/runtime/types';
-const searchInput = ref<string | null>(null);
+const searchInput = ref('');
 // interface Category {
 //     label: string,
 //     avatar?: {
@@ -62,7 +62,6 @@ const items = ref<DropdownItem[][]>([[{
         </UInput>
         <div class="flex gap-6 items-center">
             <div class="cursor-pointer hover:text-blue-900 font-serif rounded-2xl hover:bg-gray-100 transition-all duration-400 px-2 py-1">Sign in</div>
-            <!-- <ShoppingCartIcon class="h-10 w-10 cursor-pointer mt-px rounded-3xl hover:bg-gray-100 transition-all duration-400 p-2" /> -->
             <UButton
                 icon="i-heroicons-shopping-cart"
                 size="sm"
